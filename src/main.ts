@@ -103,6 +103,24 @@ async function _requestLLM(prompt: string): Promise<{ statusCode: number; text: 
   return { statusCode, text };
 }
 
+// ponytail: 正则过滤常见 Markdown 标记，非完整解析器；遇到罕见语法残留可再补规则
+function stripMarkdown(text: string): string {
+  return text
+    .split('\n')
+    .map((line) => {
+      let l = line.trim();
+      l = l.replace(/^(```\w*|~~~\w*|---+|===+|>\s?|[-*+]\s+|\d+[.)]\s+)/, ''); // 围栏/分隔线/引用/列表标记
+      l = l.replace(/^#{1,6}\s*/, ''); // 标题
+      l = l.replace(/!{0,1}\[([^\]]*)\]\([^)]*\)/g, '$1'); // 图片/链接只留文字
+      l = l.replace(/\*{1,3}([^*]+)\*{1,3}/g, '$1'); // 粗体/斜体
+      l = l.replace(/`([^`]*)`/g, '$1'); // 行内代码
+      return l;
+    })
+    .filter((line) => line !== '') // 丢弃空行，排版紧凑
+    .join('\n')
+    .trim();
+}
+
 // 连接测试: 返回结果段落
 async function _test(): Promise<Bob.TranslateResult> {
   const cfg = getConfig();
@@ -110,7 +128,7 @@ async function _test(): Promise<Bob.TranslateResult> {
   return {
     from: 'auto',
     to: 'zh-Hans',
-    toParagraphs: ['✅ 连接成功', `端点: ${cfg.apiUrl}`, `类型: ${cfg.apiType}  模型: ${cfg.model}`, `回复预览: ${text.slice(0, 100)}`],
+    toParagraphs: stripMarkdown(`✅ 连接成功\n端点: ${cfg.apiUrl}\n类型: ${cfg.apiType}  模型: ${cfg.model}\n回复预览: ${text.slice(0, 100)}`).split('\n'),
   };
 }
 
@@ -124,7 +142,7 @@ export function translate(query: Bob.TranslateQuery, completion: Bob.Completion)
         String(Bob.api.getOption('promptTemplate') || '用通俗易懂又简洁的话解释下：$text')
           .replace(/\$(query\.)?text/g, text)
           .replace(/\$(query\.)?to/g, query.detectTo),
-      ).then(({ text: reply }) => ({ from: 'auto', to: query.detectTo, toParagraphs: reply.trim().split('\n') }));
+      ).then(({ text: reply }) => ({ from: 'auto', to: query.detectTo, toParagraphs: stripMarkdown(reply).split('\n') }));
 
   job
     .then((result) => completion({ result }))
