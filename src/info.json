@@ -1,7 +1,7 @@
 {
   "identifier": "com.local.bobplugin.explain",
   "category": "translate",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "name": "解释一下",
   "summary": "解释一下插件，自定义 Prompt + OpenAI 兼容接口",
   "author": "ifyour",
