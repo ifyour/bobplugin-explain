@@ -1,4 +1,4 @@
-# 解释一下 - Bob 插件
+# bobplugin-explain
 
 > [Bob](https://github.com/ripperhe/Bob) 划词翻译插件：选中任意文本，调用大模型「用通俗易懂又简洁的话解释下」。
 
@@ -76,7 +76,6 @@ python3 scripts/gen-icon.py  # 重新生成图标（需 Pillow）
 ## 致谢
 
 - 基于 [tingv/bobplugin-google-translate](https://github.com/tingv/bobplugin-google-translate) 的工程脚手架
-- 灵感来自 [@vista8](https://x.com/vista8/status/2102431061959663843) 分享的「解释一下」插件
 
 ## License
 
