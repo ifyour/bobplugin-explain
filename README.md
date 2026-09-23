@@ -2,7 +2,9 @@
 
 > [Bob](https://github.com/ripperhe/Bob) 划词翻译插件：选中任意文本，调用大模型「用通俗易懂又简洁的话解释下」。
 
-灵感来自 [向阳乔木](https://x.com/vista8) 分享的同名插件。本插件面向 **Bob 社区免费版**，支持任意 OpenAI 兼容或 Anthropic 兼容的接口——云端服务（OpenAI / DeepSeek / 智谱等）或本地模型（Ollama / LM Studio / 各类代理网关）都可以。
+本插件面向 **Bob 社区免费版**，支持任意 OpenAI 兼容或 Anthropic 兼容的接口——云端服务（OpenAI / DeepSeek / 智谱等）或本地模型（Ollama / LM Studio / 各类代理网关）都可以。
+
+<img src="assets/intro.png" width="50%" alt="产品介绍">
 
 ## 功能
 
