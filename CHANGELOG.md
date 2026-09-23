@@ -1,13 +1,11 @@
-## 0.1.1 (2026-09-23)
-
-
-### Features
-
-* 解释插件 v0.1.0（重置历史） ([0d71d47](https://github.com/ifyour/bobplugin-explain/commit/0d71d47b2b8595f2c126e59490f566df69c68a0c))
-
-
-
 # 更新日志
+
+## 0.1.1 - 2026-09-23
+
+### 维护
+- push 到 main 自动构建（CI）
+- 精简 tsconfig 配置
+- 精简依赖：移除 babel 链、fs-extra、rimraf、cross-env、querystring、polyfill，改用 npm lockfile
 
 ## 0.1.0
 
