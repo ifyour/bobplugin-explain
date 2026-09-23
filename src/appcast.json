@@ -3,7 +3,7 @@
   "versions": [
     {
       "version": "0.1.2",
-      "desc": "https://github.com/ifyour/bobplugin-explain/blob/main/CHANGELOG.md",
+      "desc": "https://github.com/ifyour/bobplugin-explain/blob/main/CHANGELOG.md#v0.1.2",
       "sha256": "391c6880271240175d2b88671a7ec69b12a18429105e4991034ba4523602ddbf",
       "url": "https://github.com/ifyour/bobplugin-explain/releases/download/v0.1.2/bobplugin-explain-v0.1.2.bobplugin",
       "minBobVersion": "0.5.0"
