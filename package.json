@@ -1,6 +1,6 @@
 {
   "name": "bobplugin-explain",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "解释一下插件，自定义 Prompt + OpenAI 兼容接口",
   "homepage": "https://github.com/ifyour/bobplugin-explain",
   "repository": "https://github.com/ifyour/bobplugin-explain.git",

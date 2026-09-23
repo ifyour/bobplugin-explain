@@ -1,3 +1,12 @@
+## 0.1.1 (2026-09-23)
+
+
+### Features
+
+* 解释插件 v0.1.0（重置历史） ([0d71d47](https://github.com/ifyour/bobplugin-explain/commit/0d71d47b2b8595f2c126e59490f566df69c68a0c))
+
+
+
 # 更新日志
 
 ## 0.1.0
