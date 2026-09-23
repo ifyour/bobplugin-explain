@@ -1,12 +1,3 @@
-## [0.1.2](https://github.com/ifyour/bobplugin-explain/compare/v0.1.1...v0.1.2) (2026-09-23)
-
-
-### Features
-
-* 过滤 Markdown 标记并紧凑排版 ([8d9f8ff](https://github.com/ifyour/bobplugin-explain/commit/8d9f8ff611aca9cb6139f5d62688e92b7ccd6b49))
-
-
-
 # 更新日志
 
 ## 0.1.2 - 2026-09-23
