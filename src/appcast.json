@@ -2,6 +2,13 @@
   "identifier": "io.github.ifyour.bobplugin-explain",
   "versions": [
     {
+      "version": "0.1.3",
+      "desc": "https://github.com/ifyour/bobplugin-explain/blob/main/CHANGELOG.md#v0.1.3",
+      "sha256": "b19f9f96f66047668219b074591668726c2e304991235e375e2f924792bb30ac",
+      "url": "https://github.com/ifyour/bobplugin-explain/releases/download/v0.1.3/bobplugin-explain-v0.1.3.bobplugin",
+      "minBobVersion": "0.5.0"
+    },
+    {
       "version": "0.1.2",
       "desc": "https://github.com/ifyour/bobplugin-explain/blob/main/CHANGELOG.md#v0.1.2",
       "sha256": "1d3c347e56c05783a687f05ba2f77214b1b0dda6cbaf279e27af338125a24f3d",
