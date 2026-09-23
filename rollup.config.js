@@ -1,11 +1,8 @@
 import path from 'path';
 import copy from 'rollup-plugin-copy';
 import json from '@rollup/plugin-json';
-import babel from '@rollup/plugin-babel';
 import esbuild from 'rollup-plugin-esbuild';
-import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
-import nodePolyfills from 'rollup-plugin-polyfill-node';
 import packageJson from './package.json';
 
 const pkg = `${packageJson.name}.bobplugin`;
@@ -38,13 +35,6 @@ const RollupConfig = {
       extensions: ['.js', '.ts', '.json'],
       preferBuiltins: false,
     }),
-    commonjs(),
-    nodePolyfills(),
-    babel({
-      extensions: ['.js', '.ts'],
-      babelHelpers: 'bundled',
-      exclude: 'node_modules/**',
-    }),
     esbuild({
       // All options are optional
       include: /\.[jt]?s$/, // default, inferred from `loaders` option
@@ -60,7 +50,6 @@ const RollupConfig = {
       },
     }),
   ],
-  external: ['crypto-js']
 };
 
 export default RollupConfig;

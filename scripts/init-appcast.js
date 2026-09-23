@@ -4,7 +4,7 @@
  */
 
 const path = require('path');
-const fs = require('fs-extra');
+const fs = require('fs');
 const crypto = require('crypto');
 
 const config = require('./config');
@@ -41,5 +41,6 @@ module.exports = () => {
     versions.splice(index, 1, version);
   }
   const appcastData = { identifier: plugInfo.identifier, versions };
-  fs.outputJSONSync(appcastPath, appcastData, { spaces: 2 });
+  fs.mkdirSync(path.dirname(appcastPath), { recursive: true });
+  fs.writeFileSync(appcastPath, JSON.stringify(appcastData, null, 2) + '\n');
 };

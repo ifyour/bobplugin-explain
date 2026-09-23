@@ -4,7 +4,7 @@
     {
       "version": "0.1.0",
       "desc": "https://github.com/ifyour/bobplugin-explain/blob/master/CHANGELOG.md",
-      "sha256": "a01835a4efa94d5abfbdb74a2cbc0b2540fdf3f36ab9d53c06374be53afeb485",
+      "sha256": "b039c6b37ddb77dac65b6f900fc30acf3697347feefe0740bcb446d17c157383",
       "url": "https://github.com/ifyour/bobplugin-explain/releases/download/v0.1.0/bobplugin-explain-v0.1.0.bobplugin",
       "minBobVersion": "0.5.0"
     }
