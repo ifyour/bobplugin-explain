@@ -69,5 +69,5 @@
       }
     }
   ],
-  "appcast": "https://raw.githubusercontent.com/ifyour/bobplugin-explain/master/src/appcast.json"
+  "appcast": "https://raw.githubusercontent.com/ifyour/bobplugin-explain/main/src/appcast.json"
 }
