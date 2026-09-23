@@ -1,0 +1,39 @@
+name: Release
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies And Build
+        run: |
+          npm install
+          npm run build
+
+      - name: Commit files
+        run: |
+          git config --global user.name 'ifyour'
+          git config --global user.email 'ifyour@outlook.com'
+          git commit -am "chore: 更新版本文件" || echo "nothing to commit"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: 'release/*.bobplugin'
+          token: ${{ secrets.GITHUB_TOKEN }}

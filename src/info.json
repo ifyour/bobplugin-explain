@@ -1,0 +1,73 @@
+{
+  "identifier": "com.local.bobplugin.explain",
+  "category": "translate",
+  "version": "0.1.0",
+  "name": "解释一下",
+  "summary": "解释一下插件，自定义 Prompt + OpenAI 兼容接口",
+  "author": "ifyour",
+  "homepage": "https://github.com/ifyour/bobplugin-explain",
+  "minBobVersion": "0.5.0",
+  "options": [
+    {
+      "identifier": "apiUrl",
+      "type": "text",
+      "title": "接口地址",
+      "defaultValue": "https://api.openai.com/v1/chat/completions",
+      "desc": "OpenAI 兼容的 chat/completions 完整地址，本地模型可填 http://localhost:11434/v1/chat/completions (Ollama) 等",
+      "textConfig": {
+        "type": "visible"
+      }
+    },
+    {
+      "identifier": "apiType",
+      "type": "menu",
+      "title": "接口类型",
+      "defaultValue": "openai",
+      "menuValues": [
+        {
+          "title": "OpenAI 兼容 (/chat/completions)",
+          "value": "openai"
+        },
+        {
+          "title": "Anthropic 兼容 (/messages)",
+          "value": "anthropic"
+        }
+      ],
+      "desc": "选 Anthropic 时使用 x-api-key 请求头并解析 Anthropic 响应格式",
+      "textConfig": {
+        "type": "visible"
+      }
+    },
+    {
+      "identifier": "apiKey",
+      "type": "text",
+      "title": "API Key",
+      "defaultValue": "",
+      "desc": "服务端点的密钥，本地模型通常留空即可",
+      "textConfig": {
+        "type": "secure"
+      }
+    },
+    {
+      "identifier": "model",
+      "type": "text",
+      "title": "模型名称",
+      "defaultValue": "gpt-4o-mini",
+      "desc": "如 gpt-4o-mini、deepseek-chat、llama3 等，取决于服务端点",
+      "textConfig": {
+        "type": "visible"
+      }
+    },
+    {
+      "identifier": "promptTemplate",
+      "type": "text",
+      "title": "用户指令",
+      "defaultValue": "用通俗易懂又简洁的话解释下：$text",
+      "desc": "$text 会替换为选中的文本；$to 会替换为目标语言代码",
+      "textConfig": {
+        "type": "visible"
+      }
+    }
+  ],
+  "appcast": "https://raw.githubusercontent.com/ifyour/bobplugin-explain/master/src/appcast.json"
+}
