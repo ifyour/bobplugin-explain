@@ -1,5 +1,5 @@
 {
-  "identifier": "com.local.bobplugin.explain",
+  "identifier": "io.github.ifyour.bobplugin-explain",
   "category": "translate",
   "version": "0.1.2",
   "name": "解释一下",
