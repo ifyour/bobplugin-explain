@@ -139,7 +139,7 @@ export function translate(query: Bob.TranslateQuery, completion: Bob.Completion)
   const job: Promise<Bob.TranslateResult> = isTest
     ? _test()
     : _requestLLM(
-        String(Bob.api.getOption('promptTemplate') || '用通俗易懂又简洁的话解释下：$text')
+        String(Bob.api.getOption('promptTemplate') || '用通俗易懂又简洁的话（100 字纯文本无 Markdown）解释下：$text')
           .replace(/\$(query\.)?text/g, text)
           .replace(/\$(query\.)?to/g, query.detectTo),
       ).then(({ text: reply }) => ({ from: 'auto', to: query.detectTo, toParagraphs: stripMarkdown(reply).split('\n') }));
