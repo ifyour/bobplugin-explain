@@ -3,7 +3,7 @@
   "versions": [
     {
       "version": "0.1.4",
-      "desc": "修复\n· 优化内置默认提示词，解释结果限定 100 字纯文本、无 Markdown 输出",
+      "desc": "修复: 优化内置默认提示词，解释结果限定 100 字纯文本、无 Markdown 输出",
       "sha256": "8dcc8f9ab970b148a71a70e9d1a9d48deae613f954ee2c2e923ddb5167d0420a",
       "url": "https://github.com/ifyour/bobplugin-explain/releases/download/v0.1.4/bobplugin-explain-v0.1.4.bobplugin",
       "minBobVersion": "0.5.0"

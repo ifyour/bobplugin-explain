@@ -27,12 +27,19 @@ const changelogDesc = (version) => {
     const start = lines.findIndex((l) => /^## /.test(l) && l.trim().startsWith(`## ${version} `));
     if (start === -1) return '';
     const end = lines.findIndex((l, i) => i > start && /^## /.test(l));
-    const html = lines
-      .slice(start + 1, end === -1 ? lines.length : end)
-      .map((l) => l.trim().replace(/^#{1,6}\s*/, '').replace(/^[-*+]\s+/, '· ')) // 去掉 Markdown 标记，纯文本
-      .filter(Boolean) // 去空行
-      .join('\n');
-    return html;
+    const out = [];
+    let section = '';
+    for (const raw of lines.slice(start + 1, end === -1 ? lines.length : end)) {
+      const l = raw.trim();
+      if (/^### /.test(l)) {
+        section = l.replace(/^###\s*/, '');
+        continue;
+      }
+      if (!l) continue;
+      // 列表项 →「类型: 内容」；非列表行（如升级须知正文）直接保留
+      out.push(/^[-*+]/.test(l) ? `${section}: ${l.replace(/^[-*+]\s+/, '')}` : l);
+    }
+    return out.join('\n');
   } catch (e) {
     return '';
   }
