@@ -29,12 +29,7 @@ const changelogDesc = (version) => {
     const end = lines.findIndex((l, i) => i > start && /^## /.test(l));
     const html = lines
       .slice(start + 1, end === -1 ? lines.length : end)
-      .join('\n')
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .split('\n')
-      .map((l) => l.trim())
+      .map((l) => l.trim().replace(/^#{1,6}\s*/, '').replace(/^[-*+]\s+/, '· ')) // 去掉 Markdown 标记，纯文本
       .filter(Boolean) // 去空行，避免首尾/连续 <br>
       .join('<br>');
     return html;
