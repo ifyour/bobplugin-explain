@@ -24,6 +24,18 @@ jobs:
           npm install
           npm run build
 
+      # CI 里重算 sha256 并提交 appcast，保证「包与指纹」同源，避免双端不一致导致校验失败
+      - name: Sync Appcast
+        run: |
+          node scripts/init-appcast.js
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          if [[ -n $(git status --porcelain src/appcast.json) ]]; then
+            git add src/appcast.json
+            git commit -m "chore: sync appcast sha256 for ${{ github.ref_name }} [skip ci]"
+            git push origin HEAD:main
+          fi
+
       - uses: ncipollo/release-action@v1
         with:
           artifacts: 'release/*.bobplugin'

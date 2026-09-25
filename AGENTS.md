@@ -61,10 +61,9 @@ npm run build      # 构建必须成功
    node scripts/init-appcast.js      # 需要先 npm run build 生成包后执行才有正确 sha256
    ```
 
-   （发版前跑一次 `npm run build` 再跑 init-appcast，保证 appcast 的 sha256 与包一致）
-   - **tag 推送后不要再重跑 `npm run build`**：重新构建的 zip 字节会变（时间戳等），
-     导致 Release 上的包与 appcast sha256 不匹配，Bob 更新时报「插件安装包完整性校验失败」。
-     若不慎重跑，需重新 `init-appcast` 并 `gh release upload vX.Y.Z release/*.bobplugin --clobber` 覆盖包，再提交 appcast。
+   - 本地 init-appcast 只是预填 appcast；**最终以 CI 里重算的 sha256 为准**：
+     Release workflow 构建后会重跑 init-appcast 并把 appcast 提交回 main（同一次构建产生包与指纹，
+     彻底避免双端不一致导致 Bob 报「插件安装包完整性校验失败」）。
 
 4. 提交 `CHANGELOG.md`、`package.json`、`package-lock.json`、`src/info.json`、`src/appcast.json`：
 
@@ -80,5 +79,5 @@ npm run build      # 构建必须成功
 ## CI
 
 - push 到 `main` → Build workflow：构建 + 上传 artifact
-- push tag → Release workflow：构建 + 创建 GitHub Release
-- workflow 需 `permissions: contents: write`，不要在 CI 里往 main 回推版本文件（本地发版时已提交）
+- push tag → Release workflow：构建 → CI 内重算 sha256 并把 appcast.json 提交回 main → 创建 GitHub Release
+- workflow 需 `permissions: contents: write`；除 Release workflow 的 appcast 自动同步外，不要在 CI 里往 main 回推其他文件
