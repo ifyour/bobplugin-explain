@@ -19,6 +19,30 @@ const releaseUrl = `${repositoryUrl}/releases/download`;
 /** 版本条目字段顺序固定，便于 review 与 diff */
 const fieldOrder = ['version', 'desc', 'sha256', 'url', 'minBobVersion'];
 
+/** 从 CHANGELOG.md 提取指定版本段落，转成 appcast desc 用的 HTML（换行→<br>） */
+const changelogDesc = (version) => {
+  try {
+    const md = fs.readFileSync(path.resolve(__dirname, '../CHANGELOG.md'), 'utf8');
+    const lines = md.split('\n');
+    const start = lines.findIndex((l) => /^## /.test(l) && l.trim().startsWith(`## ${version} `));
+    if (start === -1) return '';
+    const end = lines.findIndex((l, i) => i > start && /^## /.test(l));
+    const html = lines
+      .slice(start + 1, end === -1 ? lines.length : end)
+      .join('\n')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .split('\n')
+      .map((l) => l.trim())
+      .filter(Boolean) // 去空行，避免首尾/连续 <br>
+      .join('<br>');
+    return html;
+  } catch (e) {
+    return '';
+  }
+};
+
 module.exports = () => {
   const pkgPath = path.resolve(__dirname, `../release/${pkg}`);
   const appcastPath = path.join(__dirname, '../src/appcast.json');
@@ -30,7 +54,7 @@ module.exports = () => {
 
   const version = {
     version: plugInfo.version,
-    desc: `${repositoryUrl}/blob/${defaultBranch}/CHANGELOG.md#v${plugInfo.version}`,
+    desc: changelogDesc(plugInfo.version) || `${repositoryUrl}/blob/${defaultBranch}/CHANGELOG.md#v${plugInfo.version}`,
     sha256: hex,
     url: `${releaseUrl}/v${plugInfo.version}/${pkg}`,
     minBobVersion: plugInfo.minBobVersion,
